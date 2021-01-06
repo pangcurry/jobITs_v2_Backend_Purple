@@ -10,4 +10,7 @@ export class User {
 
   @Column({ length: 5 })
   name: string;
+
+  @Column({ default: 1 })
+  page: number;
 }
