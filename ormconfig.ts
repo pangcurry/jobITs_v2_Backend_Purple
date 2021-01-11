@@ -1,4 +1,4 @@
-import { Depart, Student, Enterprise, User, Recruit } from "./src/database/entity";
+import { Certificate, Depart, Enterprise, Introduction, Manager, Qualification, Recruit, Specialty, Student, User, Welfare } from "./src/database/entity";
 import { ConnectionOptions } from "typeorm";
 
 const connectionOptions: ConnectionOptions = {
@@ -10,7 +10,7 @@ const connectionOptions: ConnectionOptions = {
    database: "jobits",
    synchronize: true,
    logging: true,
-   entities: [Depart, Student, Enterprise, User, Recruit],
+   entities: [Certificate, Depart, Enterprise, Introduction, Manager, Qualification, Recruit, Specialty, Student, User, Welfare],
  };
 
 export default connectionOptions;
