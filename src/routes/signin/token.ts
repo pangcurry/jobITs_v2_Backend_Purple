@@ -26,15 +26,15 @@ router.post(
             console.log(accessTokenPayload);
             const isProofAccess = validateTokenData(accessTokenPayload);
             if(!isProofAccess) {
-                res.status(401).json({
+                res.status(403).json({  //fix 401 -> 403
                     message: "Invalid accesstoken"
                 })
             }
 
             const userInAccess = await UserRepository.findById(accessTokenPayload.userId);
             if(!userInAccess) {
-                res.status(401).json({
-                    message: "user not found"
+                res.status(404).json({  // fix 401 -> 404
+                    message: "User not found"
                 })
             }
 
@@ -43,22 +43,22 @@ router.post(
                     message: "refreshToken does not exist"
                 });
             }
-            const refreshTokenPayload = await JWT.validate(req.body.refreshToken);
+            const refreshTokenPayload = await JWT.validate(req.body.refreshToken); 
             const isProofRefresh = validateTokenData(refreshTokenPayload);
             if(!isProofRefresh) {
-                res.status(401).json({
+                res.status(403).json({  // fix 401 -> 403   // 401 ? 유저를 모르기 때문에
                     message: "Invalid refreshtoken"
                 })
             }
 
             const userInRefresh = await UserRepository.findById(refreshTokenPayload.userId);
             if(!userInRefresh) {
-                res.status(401).json({
-                    message: "user not found"
+                res.status(404).json({  // fix 401 -> 404 
+                    message: "User not found"
                 })
             }
 
-            if(userInAccess.id !== userInRefresh.id) {
+            if(userInAccess.id !== userInRefresh.id) {  // 403 ? 유저를 알기 때문에
                 res.status(401).json({
                     message: "Invalid refresh token"
                 });

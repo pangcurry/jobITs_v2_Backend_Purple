@@ -28,8 +28,8 @@ router.get(
 
         const user = await UserRepository.findById(accessTokenPayload.userId);
         if(!user) {
-            res.status(401).json({
-                message: "user not found"
+            res.status(404).json({  // fix 401 -> 404
+                message: "User not found"
             })
         }
 

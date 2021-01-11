@@ -13,8 +13,8 @@ router.post(
         try {
             const user = await UserRepository.findById(req.body.id);
             if(!user){ 
-                res.status(401).json({
-                    message: "user not found"
+                res.status(404).json({  // fix 401 -> 404
+                    message: "User not found"
                 })
             }
             
@@ -47,8 +47,8 @@ router.post(
         try {
             const user = await UserRepository.findById(req.body.id);
             if(!user){ 
-                res.status(401).json({
-                    message: "user not found"
+                res.status(404).json({  // fix 401 -> 404
+                    message: "User not found"
                 })
             }
             
