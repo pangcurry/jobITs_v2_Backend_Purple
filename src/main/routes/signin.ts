@@ -1,6 +1,6 @@
-import { Express } from 'express';
+import { Router } from 'express';
 
-export default (app: Express): void => {
-    app.post('/signin/basic');
-    app.post('/signin/admin');
+export default (router: Router): void => {
+    router.post('/signin/basic');
+    router.post('/signin/admin');
 }

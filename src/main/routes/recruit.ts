@@ -1,6 +1,6 @@
-import { Express } from 'express';
+import { Router } from 'express';
 
-export default (app: Express): void => {
-    app.get('/recruit/basic');
-    app.get('/recruit/search');
+export default (router: Router): void => {
+    router.get('/recruit/basic');
+    router.get('/recruit/search');
 }

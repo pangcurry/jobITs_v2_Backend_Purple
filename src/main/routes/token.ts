@@ -1,5 +1,5 @@
-import { Express } from 'express';
+import { Router } from 'express';
 
-export default (app: Express): void => {
-    app.post('/token/refresh');
+export default (router: Router): void => {
+    router.post('/token/refresh');
 }

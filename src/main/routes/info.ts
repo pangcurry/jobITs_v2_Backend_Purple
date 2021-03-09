@@ -1,5 +1,5 @@
-import { Express } from 'express';
+import { Router } from 'express';
 
-export default (app: Express): void => {
-    app.get('/info/name');
+export default (router: Router): void => {
+    router.get('/info/name');
 }
