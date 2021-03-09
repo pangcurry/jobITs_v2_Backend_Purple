@@ -26,3 +26,13 @@ export const Unauthorized = (error: Error): HttpResponse => {
         data:{}
     };
 }
+
+export const serverError = (error: Error): HttpResponse => {
+    return {
+        status: 500,
+        statusCode: error.name,
+        message: error.message,
+        data:{}
+    };
+}
+
