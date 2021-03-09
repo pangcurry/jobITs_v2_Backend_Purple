@@ -1,8 +1,8 @@
 import { JoiAdapter } from '../../../infra/validators';
-import { Validation } from '../../../presentation/protocols';
+import { joiValidation } from '../../../presentation/protocols';
 import { SigninValidation } from '../../../validation/validators/signin-validation';
 
-export const makeSigninValidation = (): Validation => {
+export const makeSigninValidation = (): joiValidation => {
     // const validations: Validation[] = [];
     const joiAdapter = new JoiAdapter();
     return new SigninValidation(joiAdapter);
