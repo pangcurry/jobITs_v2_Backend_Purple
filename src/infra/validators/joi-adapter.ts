@@ -4,28 +4,22 @@ export class JoiAdapter {
     constructor() {}
     async isValidSId(sId: string): Promise<boolean> {
         try {
-            const value = await schema.validateAsync({ sId });
-            if(!value.error) {
-                return true;
-            }
-            return false;
+            await schema.validateAsync({ sId });
+            return true;
         }
         catch(err) {
-            console.log(err.message);
+            console.log(err);   // error 로깅
             return false;
         }
     };
 
     async isValidSPassword(sPassword: string): Promise<boolean> {
         try {
-            const value = await schema.validateAsync({ sPassword });
-            if(!value.error) {
-                return true;
-            }
-            return false;
+            await schema.validateAsync({ sPassword });
+            return true;
         }
         catch(err) {
-            console.log(err.message);
+            console.log(err);   // error 로깅
             return false;
         }
     };
