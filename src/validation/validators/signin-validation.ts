@@ -8,8 +8,11 @@ export class SigninValidation implements Validation {
     validate(input: SigninController.Request ): Error {
         const isValidSId = this.validation.isValidSId(input.sId);
         const isValidSPassword = this.validation.isValidSPassword(input.sPassword);
-        if(!isValidSId || !isValidSPassword) {
+        if(!isValidSId) {
             return new InvalidParamError('sId');
+        }
+        if(!isValidSPassword) {
+            return new InvalidParamError('sPassword');
         }
         return null as any;
     }
