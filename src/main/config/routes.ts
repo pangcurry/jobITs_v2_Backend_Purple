@@ -1,13 +1,17 @@
-import { Express } from 'express';
+import { Express, Router } from 'express';
 
 import signinRoutes from '../routes/signin';
 import infoRoutes from '../routes/info';
 import tokenRoutes from '../routes/token';
 import recruitRoutes from '../routes/recruit';
 
+const router = Router();
+
 export default (app: Express): void => {
-    signinRoutes(app);
-    infoRoutes(app);
-    tokenRoutes(app);
-    recruitRoutes(app);
+    app.use('/', router);
+
+    signinRoutes(router);
+    infoRoutes(router);
+    tokenRoutes(router);
+    recruitRoutes(router);
 }
