@@ -7,5 +7,5 @@ export const makeDbAuthentication = (): Authentication => {
     const salt = 19;    // env값으로 설정하기
     const bcryptAdapter = new BcryptAdapter(salt);
     const accountRepository = new UserRepository();
-    return new DbAuthentication(accountRepository);
+    return new DbAuthentication(accountRepository, bcryptAdapter);
 }
