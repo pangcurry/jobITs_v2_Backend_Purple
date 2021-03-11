@@ -18,11 +18,11 @@ export class SigninController implements Controller {
                 return badRequest(error);
             }
             const authenticationModel = await this.authentication.auth(request);
-            console.log(authenticationModel);
-
-
-            
-            return ok({message: "token"});
+            console.log(authenticationModel); // test
+            if(authenticationModel.error) {
+                return authenticationModel.error;
+            }
+            return ok({ ...authenticationModel });
         }
         catch(err) {
             return serverError(new ServerError());
