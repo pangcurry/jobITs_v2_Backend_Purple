@@ -7,8 +7,8 @@ export class SigninValidation implements joiValidation {
     constructor(private readonly validation: JoiAdapter) {}
     async joiValidate(input: SigninController.Request ): Promise<Error> {
         try {
-            const isValidSId = await this.validation.isValidSId(input.sId);
-            const isValidSPassword = await this.validation.isValidSPassword(input.sPassword);
+            const isValidSId = await this.validation.isValidSId(input.id);
+            const isValidSPassword = await this.validation.isValidSPassword(input.password);
             if(!isValidSId) {
                 return new InvalidParamError('sId');
             }
