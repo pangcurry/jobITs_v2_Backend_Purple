@@ -16,6 +16,6 @@ export namespace JwtAdapter {
         issuer: string,
         expiresIn: string,
         user_id: string,
-        isAdmin: string
+        isAdmin: boolean
     }
 }
