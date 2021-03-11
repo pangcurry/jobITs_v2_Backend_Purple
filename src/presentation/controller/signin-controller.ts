@@ -1,9 +1,11 @@
+import { Authentication } from "../../domain/usecases";
 import { ServerError } from "../errors/server-error";
 import { badRequest, ok, serverError } from "../helpers";
 import { Controller, HttpResponse, joiValidation } from "../protocols";
 
 export class SigninController implements Controller {
     constructor(
+        private readonly authentication: Authentication,
         private readonly validation: joiValidation
     ) {}
     async handle (request: SigninController.Request): Promise<HttpResponse> {
@@ -15,6 +17,8 @@ export class SigninController implements Controller {
             if(!!error) {
                 return badRequest(error);
             }
+            const authenticationModel = await this.authentication.auth(request);
+            console.log(authenticationModel);
 
 
             
@@ -28,7 +32,7 @@ export class SigninController implements Controller {
 
 export namespace SigninController {
     export type Request = {
-        sId: string,
-        sPassword: string
+        id: string,
+        password: string
     }
 }
