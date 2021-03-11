@@ -1,2 +1,3 @@
-export * from './invalid-Param-Error';
+export * from './invalid-param-error';
 export * from './server-error';
+export * from './authentication-failure-error';
