@@ -13,7 +13,7 @@ export const adaptRoute = (controller: Controller ) => {
         if(200 <= status && status <= 299) {
             res.status(status).json({ statusCode, message, data });
         } else {
-            res.status(httpResponse.status).json({ statusCode, error: message });
+            res.status(status).json({ statusCode, error: message });
         }
     }
 };
