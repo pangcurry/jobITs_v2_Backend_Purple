@@ -1,8 +1,18 @@
-import { Controller, HttpResponse } from "../protocols";
+import { badRequest, serverError } from "../helpers";
+import { Controller, HttpResponse, joiValidation } from "../protocols";
 
 export class SigninAdminController implements Controller {
-    constructor() {}
+    constructor(
+        private readonly validation: joiValidation
+    ) {}
     async handle(request: SigninAdminController.Request): Promise<HttpResponse> {
+        const error = await this.validation.joiValidate(request);
+        if(error.message === `Internal server error`) {
+            return serverError(error);
+        }
+        if(!!error) {
+            return badRequest(error);
+        }
         
     }
 }
