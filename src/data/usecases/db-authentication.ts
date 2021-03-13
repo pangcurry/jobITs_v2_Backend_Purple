@@ -13,6 +13,11 @@ const refreshToken_config = {
     expiresIn: '100d'
 }
 
+const admin_config = {  // 추후 env처리
+    name: "JOBITS_ADMIN",
+    numOfName: 12
+}
+
 export class DbAuthentication implements Authentication {
     constructor(
         private readonly loadAccountByEmailRepository: LoadUserByEmailRepository,
@@ -27,7 +32,7 @@ export class DbAuthentication implements Authentication {
             const isVlid = await this.hashComparer.compare(authenticationParams.password, user.password);
             if(isVlid) {
                 let isAdmin: boolean = false;
-                if(user.name === "ADMIN") {
+                if(user.name === admin_config.name) {
                     isAdmin = true;
                 }
                 const accessToken = await this.jwtEncrypter.encrypt({
