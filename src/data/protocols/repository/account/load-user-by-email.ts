@@ -1,5 +1,5 @@
 export class LoadUserByEmailRepository {
-    loadByEmail: (email: string) => Promise<LoadUserByEmailRepository.Result>
+    loadById: (email: string) => Promise<LoadUserByEmailRepository.Result>
 }
 
 export namespace LoadUserByEmailRepository {
