@@ -1,7 +1,8 @@
-import { DbLoadInfoByUser } from "../../../data/usecases";
+import { DbLoadUserById } from "../../../data/usecases";
+import { LoadUserById } from "../../../domain/usecases";
 import { UserRepository } from "../../../infra/db/repositories";
 
-export const makeDbLoadInfoByUser = ():  => {
-    const accountRepository = new UserRepository();
-    return new DbLoadInfoByUser();
+export const makeDbLoadUserById = ():LoadUserById  => {
+    const userRepository = new UserRepository();
+    return new DbLoadUserById(userRepository);
 }
