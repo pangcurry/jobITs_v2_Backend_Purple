@@ -1,2 +1,4 @@
 export * from './authentication-factory';
 export * from './load-info-by-user-factory';
+export * from './password-authentication-factory';
+export * from './update-account-factory';
