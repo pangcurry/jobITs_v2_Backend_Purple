@@ -16,7 +16,7 @@ export class AuthMiddleware implements Middleware {
             if(error) {
                 return forbidden(error);
             }
-            return ok({ decoded });
+            return ok({ ...decoded });
         }
         console.log(accessToken);
         return badRequest(new NoTokenError());
