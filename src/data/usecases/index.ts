@@ -1,2 +1,2 @@
 export * from './db-authentication';
-export * from './db-load-info-by-user';
+export * from './db-load-user-by-id';
