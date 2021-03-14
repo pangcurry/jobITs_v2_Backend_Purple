@@ -1,2 +1,2 @@
 export * from './authentication';
-export * from './load-info-by-user';
+export * from './load-user-by-id';
