@@ -5,4 +5,5 @@ import { makeSigninAdminController, makeSigninController } from '../factories/co
 export default (router: Router): void => {
     router.post('/signin/basic', adaptRoute(makeSigninController()));
     router.post('/signin/admin', adaptRoute(makeSigninAdminController()));
+    router.post('/signin/password', adaptRoute());
 }
