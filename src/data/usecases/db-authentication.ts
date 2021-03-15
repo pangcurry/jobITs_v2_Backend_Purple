@@ -29,8 +29,8 @@ export class DbAuthentication implements Authentication {
         const user = await this.loadAccountByEmailRepository.loadById(authenticationParams.id);
         console.log(!!user);    // test logging
         if(user) {
-            // const isVlid = await this.hashComparer.compare(authenticationParams.password, user.password);
-            const isVlid = true;    // 임시로 비번 오픈
+            const isVlid = await this.hashComparer.compare(authenticationParams.password, user.password);
+            // const isVlid = true;    // 임시로 비번 오픈
             if(isVlid) {
                 let isAdmin: boolean = false;
                 if(user.name === admin_config.name) {
