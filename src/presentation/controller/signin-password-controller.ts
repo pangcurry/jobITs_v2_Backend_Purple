@@ -1,16 +1,15 @@
-import { LoadUserById, PasswordAuthentication, UpdateAccount } from "../../domain/usecases";
-import { badRequest, serverError } from "../helpers";
+import { PasswordAuthentication, UpdateAccount } from "../../domain/usecases";
+import { badRequest, ok, serverError } from "../helpers";
 import { Controller, HttpResponse, joiValidation } from "../protocols";
 
 export class SigninPasswordController implements Controller {
     constructor(
-        // private readonly loadUserByIdRepository: LoadUserById,
         private readonly validation: joiValidation,
         private readonly authentication: PasswordAuthentication,
         private readonly updateAccount: UpdateAccount
     ) {}
     async handle(info:SigninPasswordController.Request): Promise<HttpResponse> {
-        const { id, oldPw, newPw } = info;
+        const { decoded, oldPw, newPw } = info;
         const validate = await this.validation.joiValidate({ oldPw, newPw });
         if(validate.message === `Internal server error`) {
             return serverError(validate);
@@ -18,27 +17,27 @@ export class SigninPasswordController implements Controller {
         if(!!validate) {
             return badRequest(validate);
         }
-        // const user = await this.loadUserByIdRepository.load(id);
-        // const { password, error } = user;
-        // if(error) {
-        //     return error;
-        // }
-        const isValid = await this.authentication.auth(info);
-        if(isValid.error) {
+        const isValid = await this.authentication.auth({ id: decoded.user_id, oldPw, newPw });
+        if(isValid) {
             return isValid.error;
         }
-        // 여기서부터 만들기
-        const update = await this.updateAccount 
-        const save = 'save';
-
-
+        const save = await this.updateAccount.update({ id: decoded.user_id, password : newPw });
+        if(save) {
+            return save.error;
+        }
+        return ok({});
     }
 }
 
 export namespace SigninPasswordController {
     export type Request = {
-        id: string,
         oldPw: string,
-        newPw: string
+        newPw: string,
+        decoded: {
+            issuer: string,
+            expiresIn: string,
+            user_id: string,
+            isAdmin: boolean
+        }
     }
 }
