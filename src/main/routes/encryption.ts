@@ -6,7 +6,7 @@ export default (router: Router): void => {
         const bcryptAdapter = new BcryptAdapter(3);
         const chipherText: string = await bcryptAdapter.hash(req.body.text);
         res.status(200).json({
-            chipherText: chipherText
+            chipherText
         })
     });
 }
