@@ -4,5 +4,5 @@ import { makeDbPasswordAuthentication, makeDbUpdateAccount } from "../usecases";
 import { makeSigninPasswordValidation } from "../validations";
 
 export const makeSigninPasswordController = (): Controller => {
-    return new SigninPasswordController(makeSigninPasswordValidation(), makeDbPasswordAuthentication(),  makeDbUpdateAccount());
+    return new SigninPasswordController(makeSigninPasswordValidation(), makeDbPasswordAuthentication(), makeDbUpdateAccount());
 }
