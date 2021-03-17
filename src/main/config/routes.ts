@@ -10,10 +10,11 @@ const router = Router();
 
 export default (app: Express): void => {
     app.use('/', router);
-
-    encryptionRoutes(router);
+    
     signinRoutes(router);
     infoRoutes(router);
     tokenRoutes(router);
     recruitRoutes(router);
+    encryptionRoutes(router);
+    
 }
