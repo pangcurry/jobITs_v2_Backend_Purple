@@ -22,17 +22,17 @@ import {
     @Max(100)
     grade: number;
   
-    @Column({ length: 255 })
+    @Column({ nullable: true })
     specialty: string;
 
-    @Column({ length: 30, name: "recruit_id" })
+    @Column({ name: "recruit_id" , length: 30 })
     recruitId: string;
   
     @OneToOne((type) => Recruit, (recruit) => recruit.recruitId, {
       onUpdate: "CASCADE",
       onDelete: "CASCADE",
     })
-    @JoinColumn({ name: "recruit_id" })
+    @JoinColumn({ name: "recruit_id" , referencedColumnName: "recruitId" })
     recruit: Recruit;
   
     @OneToMany((type) => Certificate, (certificate) => certificate.qualification)
