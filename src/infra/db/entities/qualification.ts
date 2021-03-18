@@ -10,7 +10,7 @@ import {
   import { Min, Max } from "class-validator";
   import { Recruit } from "./recruit";
   import { Certificate } from "./certificate";
-  import { Specialty } from "./specialty";
+  // import { Specialty } from "./specialty";
   
   @Entity()
   export class Qualification extends ValidationEntity {
@@ -22,6 +22,9 @@ import {
     @Max(100)
     grade: number;
   
+    @Column({ length: 255 })
+    specialty: string;
+
     @Column({ length: 30, name: "recruit_id" })
     recruitId: string;
   
@@ -34,8 +37,7 @@ import {
   
     @OneToMany((type) => Certificate, (certificate) => certificate.qualification)
     certficates!: Certificate[];
-  
-    @OneToMany((type) => Specialty, (specialty) => specialty.qualification)
-    specialties!: Specialty[];
+    // @OneToMany((type) => Specialty, (specialty) => specialty.qualification)
+    // specialties!: Specialty[];
   }
   
