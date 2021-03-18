@@ -4,7 +4,10 @@ import { Enterprise } from "./enterprise";
 
 @Entity()
 export class Recruit extends ValidationEntity {
-  @PrimaryColumn({ name: "recruit_id", length: 30 })
+  @PrimaryColumn({ name: "recruit_no" })
+  recruitNo: number;
+
+  @Column({ name: "recruit_id", length: 30 })
   recruitId: string;
 
   @Column({ length: 10, type: "char", nullable: true })
