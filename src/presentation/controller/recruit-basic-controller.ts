@@ -12,6 +12,9 @@ export class RecruitBasicController implements Controller {
             const data = await this.loadSimpleEnterprises.load();
             const { error, list } = data;
             if(error) {
+                if(error.message === `Internal server error`) {
+                    return serverError(error);
+                }
                 return notFound(error);
             }
             return ok({ list });
