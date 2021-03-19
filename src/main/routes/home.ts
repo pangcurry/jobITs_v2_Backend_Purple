@@ -4,5 +4,5 @@ import { makeHomeNoticeController } from "../factories/controllers";
 import { auth } from "../middlewares";
 
 export default (router: Router): void => {
-    router.get('/home/notice', auth, adaptRoute(makeHomeNoticeController()));
+    router.get('/home/notice', adaptRoute(makeHomeNoticeController()));
 }
