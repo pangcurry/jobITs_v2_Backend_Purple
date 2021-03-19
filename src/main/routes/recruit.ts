@@ -5,5 +5,5 @@ import { auth } from '../middlewares';
 
 export default (router: Router): void => {
     router.get('/recruit/basic', auth, adaptRoute(makeRecruitBasicController()));
-    router.get('/recruit/search', adaptRoute(makeRecruitSearchController()));
+    router.get('/recruit/search', auth, adaptRoute(makeRecruitSearchController()));
 }
