@@ -19,13 +19,6 @@ export class RecruitSearchController implements Controller {
                 }
                 return notFound(error);
             }
-            // 전송
-            // const a = "";
-            // if(null || "a") {
-            //     console.log(`%${a}%`);
-            // }
-            // console.log(null || null);
-
             return ok({ list });
 
         } catch (err) {
