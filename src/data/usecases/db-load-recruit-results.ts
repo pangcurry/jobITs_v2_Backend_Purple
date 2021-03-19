@@ -1,6 +1,5 @@
 import { LoadRecruitResults } from "../../domain/usecases";
-import { RecruitRepository } from "../../infra/db/repositories";
-import { ServerError } from "../../presentation/errors";
+import { NoListError, ServerError } from "../../presentation/errors";
 import { LoadRecruitResultsRepository } from "../protocols/repository/recruit";
 
 export class DbLoadRecruitResults implements LoadRecruitResults {
@@ -16,7 +15,10 @@ export class DbLoadRecruitResults implements LoadRecruitResults {
                 address,
                 worker: numOfWorker
             });
-            console.log('loadRecruitResults::::::::::::::::::', list);
+            if(list === []) {
+                return { list: [], error: new NoListError() };
+            }
+            return { list };
         } catch (err) {
             console.log(err);
             return { list: [], error: new ServerError() };
