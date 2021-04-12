@@ -6,6 +6,7 @@ import tokenRoutes from '../routes/token';
 import recruitRoutes from '../routes/recruit';
 import encryptionRoutes from '../routes/encryption';
 import homeRoutes from '../routes/home';
+import signupRoutes from '../routes/signup';
 
 const router = Router();
 
