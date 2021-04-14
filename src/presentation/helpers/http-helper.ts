@@ -45,6 +45,15 @@ export const notFound = (error: Error): HttpResponse => {
     };
 }
 
+export const conflict = (error: Error): HttpResponse => {
+    return {
+        status: 409,
+        statusCode: error.name,
+        message: error.message,
+        data:{}
+    }
+}
+
 export const serverError = (error: Error): HttpResponse => {
     return {
         status: 500,
