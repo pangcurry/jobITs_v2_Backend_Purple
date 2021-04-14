@@ -6,3 +6,4 @@ export * from './token-authentication';
 export * from './load-simple-enterprises';
 export * from './load-home-notices';
 export * from './load-recruit-results';
+export * from './add-account';
