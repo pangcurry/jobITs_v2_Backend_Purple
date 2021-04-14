@@ -11,6 +11,9 @@ export default {
     },
     admin: {
         name: process.env.ADMIN_NAME,
-        length: process.env.ADMIN_LENGTH,
+        length: Number(process.env.ADMIN_LENGTH),
+    },
+    bcrypt: {
+        salt: Number(process.env.BCRYPT_SALT),
     }
 }
