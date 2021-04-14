@@ -1,9 +1,9 @@
 import { EntityRepository, getRepository } from "typeorm";
-import { CheckAccountByIdRepository, LoadUserByEmailRepository, UpdateUserPassowrdRepository } from "../../../data/protocols/repository";
+import { AddUserRepository, CheckAccountByIdRepository, LoadUserByEmailRepository, UpdateUserPassowrdRepository } from "../../../data/protocols/repository";
 import { User } from "../entities";
 
 @EntityRepository(User)
-export class UserRepository implements LoadUserByEmailRepository, UpdateUserPassowrdRepository, CheckAccountByIdRepository{
+export class UserRepository implements LoadUserByEmailRepository, UpdateUserPassowrdRepository, CheckAccountByIdRepository, AddUserRepository{
     async loadById(id: string): Promise<LoadUserByEmailRepository.Result> {
         return await getRepository(User)
             .createQueryBuilder('user')
@@ -28,5 +28,20 @@ export class UserRepository implements LoadUserByEmailRepository, UpdateUserPass
             .where('user.id = :id', { id })
             .getOne();
             return user !== null;
+    }
+    async addUser(account: AddUserRepository.Params): Promise<boolean> {
+        try {
+            await getRepository(User)
+            .createQueryBuilder("user")
+            .insert()
+            .into(User)
+            .values(account)
+            .execute();
+            return true;
+        }
+        catch(err) {
+            console.log(err);   // 에러 로깅
+            return false;
+        }
     }
 }
